@@ -23,7 +23,6 @@ class DB:
                 username TEXT,
                 full_name TEXT,
                 user_hash TEXT UNIQUE,
-                usage_count INTEGER DEFAULT 0,
                 created_at INTEGER,
                 last_active INTEGER,
                 banned INTEGER DEFAULT 0
@@ -78,7 +77,7 @@ class DB:
     def stats_for_user(self, user_id: int) -> Dict[str, Any]:
         with self._connect() as con:
             cur = con.cursor()
-            cur.execute("SELECT created_at, last_active, user_hash, username, full_name, usage_count FROM users WHERE user_id=?", (user_id,))
+            cur.execute("SELECT created_at, last_active, user_hash, username, full_name FROM users WHERE user_id=?", (user_id,))
             row = cur.fetchone()
             return {
                 "created_at": row["created_at"] if row else None,
@@ -86,5 +85,4 @@ class DB:
                 "user_hash": row["user_hash"] if row else None,
                 "username": row["username"] if row else None,
                 "full_name": row["full_name"] if row else None,
-                "usage_count": row["usage_count"] if row else None
             }
