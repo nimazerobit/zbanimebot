@@ -12,7 +12,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
     chat_id = update.effective_message.chat_id
     message_id = update.effective_message.message_id
-    await context.bot.send_message(chat_id=chat_id, reply_to_message_id=message_id, text=TEXTS["main_menu"]["title"].format(version=CFG["VERSION"]), parse_mode="HTML")
+    keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(TEXTS["main_menu"]["inline_button"], switch_inline_query_current_chat="")]])
+    await context.bot.send_message(chat_id=chat_id, reply_to_message_id=message_id, text=TEXTS["main_menu"]["title"].format(version=CFG["VERSION"]), reply_markup=keyboard, parse_mode="HTML")
 
 async def developer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if await check_user(update, context) < 0:
