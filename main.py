@@ -52,7 +52,7 @@ def main():
 
     # Callbacks
     app.add_handler(CallbackQueryHandler(global_callbacks, pattern=r"^(emptycallback)$"))
-    app.add_handler(CallbackQueryHandler(admin_callbacks, pattern=r"^(admin_|toggle_user_notify|status_panel|adminpanel)"))
+    app.add_handler(CallbackQueryHandler(admin_callbacks, pattern=r"^(admin_|show_users:|toggle_user_notify|status_panel|adminpanel)"))
 
     print("Bot started")
     app.run_polling(close_loop=False)
