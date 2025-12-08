@@ -5,7 +5,7 @@ import aiohttp
 from io import BytesIO
 
 from core.utils import has_active_private_chat, check_user
-from core.texts import TEXTS
+from core.config_loader import TEXTS
 
 ### --- waifu argument parser --- ###
 def parse_waifu_args_from_text(text: str):

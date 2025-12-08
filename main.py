@@ -1,8 +1,7 @@
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import Application, CommandHandler, InlineQueryHandler, CallbackQueryHandler, ContextTypes
 
-from core.texts import TEXTS
-from core.config_loader import CFG
+from core.config_loader import CFG, TEXTS
 from core.admin_system import adminpanel, admin_userinfo, broadcast, admin_callbacks, show_all_users
 from core.utils import check_user
 from core.anime_bot_core import random_inline
