@@ -4,7 +4,7 @@
   "ADMINS": [123456789],
   "OWNERS": [123456789],
   "DB_PATH": "bot.db",
-  "VERSION": "v1.0.0",
+  "VERSION": "v1.0.1",
   "REQUIRED_CHATS": [
     {
       "title": "test-name",
