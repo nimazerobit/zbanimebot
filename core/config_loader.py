@@ -13,11 +13,16 @@ DBH = DB(CFG["DB_PATH"])
 
 def reload_config():
     global CFG, DBH
-    CFG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    new_cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    CFG.clear()
+    CFG.update(new_cfg)
     DBH = DB(CFG["DB_PATH"])
     return CFG
 
+
 def reload_texts():
     global TEXTS
-    TEXTS = json.loads(TEXTS_PATH.read_text(encoding="utf-8"))
+    new_texts = json.loads(TEXTS_PATH.read_text(encoding="utf-8"))
+    TEXTS.clear()
+    TEXTS.update(new_texts)
     return TEXTS
