@@ -17,9 +17,9 @@ def parse_waifu_args_from_text(text: str):
 
     if "nsfw" in text:
         is_nsfw = True
-    if "portrait" in args or "vertical" in args:
+    if "portrait" in args or "vertical" in args or "v" in args:
         orientation = "Portrait"
-    elif "landscape" in args or "horizontal" in args:
+    elif "landscape" in args or "horizontal" in args or "h" in args:
         orientation = "Landscape"
     elif "random" in args:
         orientation = "All"
