@@ -18,39 +18,39 @@ def parse_waifu_args_from_text(text: str):
     if "nsfw" in text:
         is_nsfw = True
     if "portrait" in args or "vertical" in args:
-        orientation = "PORTRAIT"
+        orientation = "Portrait"
     elif "landscape" in args or "horizontal" in args:
-        orientation = "LANDSCAPE"
+        orientation = "Landscape"
     elif "random" in args:
-        orientation = "RANDOM"
+        orientation = "All"
 
     return orientation, is_nsfw
 
 
 ### --- fetch image helper --- ###
 async def fetch_waifu_image(orientation=None, is_nsfw=None, min_height=None, limit=1, download=False):
-    url = "https://api.waifu.im/search"
+    url = "https://api.waifu.im/images"
     params = {}
 
     if orientation:
-        params["orientation"] = orientation.upper()
+        params["Orientation"] = orientation
     if is_nsfw is not None:
-        params["is_nsfw"] = str(is_nsfw).lower()
+        params["IsNsfw"] = str(is_nsfw)
     if min_height:
-        params["height"] = f">={min_height}"
+        params["Height"] = f">={min_height}"
     if limit > 1:
-        params["limit"] = str(int(limit))
+        params["PageSize"] = str(int(limit))
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as resp:
             if resp.status != 200:
                 return None
             data = await resp.json()
-            if not data.get("images"):
+            if not data.get("items"):
                 return None
 
             results = []
-            for image_data in data["images"]:
+            for image_data in data["items"]:
                 image_url = image_data["url"]
                 tags = ", ".join([t["name"] for t in image_data.get("tags", [])])
 
